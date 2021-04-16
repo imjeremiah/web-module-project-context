@@ -22,10 +22,22 @@ function App() {
 		])
 	};
 
+	const removeItem = id => {
+		setCart([
+			...cart,
+			cart.filter(item => item.id !== id)
+		])
+	}
+	  const removeFromCart = (el) => {
+    let hardCopy = [...cart];
+    hardCopy = hardCopy.filter((cartItem) => cartItem.id !== el.id);
+    setCart(hardCopy);
+  };
+
 	return (
 		<div className="App">
 			<ProductContext.Provider value={{ products, addItem }}>
-				<CartContext.Provider value={{ cart }}>
+				<CartContext.Provider value={{ cart, removeItem }}>
 					<Navigation />
 
 					{/* Routes */}
